@@ -9,6 +9,7 @@ import javax.script.ScriptException;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
+import javax.swing.Timer;
 
 import externalInterface.ExternalInterface;
 
@@ -16,12 +17,17 @@ public class ScriptEvaluator implements ActionListener {
 	ScriptEngine engine;
 	private ExternalInterface externalInterface;
 	private JTextArea textArea;
+	private Timer timer;
+	private double time = 0.0;
+	private int delay = 100;
 	boolean autoEval = false;
 
 	public ScriptEvaluator(ExternalInterface externalInterface,
 			JTextArea textArea) {
 		this.externalInterface = externalInterface;
 		this.textArea = textArea;
+		timer = new Timer(100, this);
+		timer.start();
 		ScriptEngineManager manager = new ScriptEngineManager();
 		engine = manager.getEngineByName("js");
 		engine.put("ei", this);
@@ -34,6 +40,10 @@ public class ScriptEvaluator implements ActionListener {
 
 	public int get(String command) {
 		return externalInterface.getValue(command);
+	}
+
+	public double getTime() {
+		return time;
 	}
 
 	public Object evaluate() {
@@ -51,6 +61,11 @@ public class ScriptEvaluator implements ActionListener {
 		// TODO Auto-generated method stub
 		if (arg0.getSource() instanceof JButton) {
 			System.out.println(evaluate());
+		} else if (arg0.getSource() instanceof Timer) {
+			time += delay / 1000.0;
+			if (getText() != null && getText().indexOf("getTime") != -1) {
+				evaluate();
+			}
 		} else if (arg0.getSource() instanceof JCheckBox) {
 			autoEval = ((JCheckBox) arg0.getSource()).isSelected();
 		}

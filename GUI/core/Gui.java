@@ -4,6 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import externalInterface.DigitalOutput;
@@ -96,6 +97,8 @@ public class Gui extends JFrame {
 		JCheckBox checkBox = new JCheckBox();
 		button.setText("Evaluate!");
 		checkBox.setText("Auto eval");
+		text.setLineWrap(true);
+		text.setWrapStyleWord(true);
 		ScriptEvaluator scriptEvaluator = new ScriptEvaluator(ei, text);
 		button.addActionListener(scriptEvaluator);
 		checkBox.addActionListener(scriptEvaluator);

@@ -4,12 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
-
-import com.sun.script.javascript.RhinoScriptEngine;
 
 import externalInterface.ExternalInterface;
 
@@ -23,7 +22,8 @@ public class ScriptEvaluator implements ActionListener {
 			JTextArea textArea) {
 		this.externalInterface = externalInterface;
 		this.textArea = textArea;
-		engine = new RhinoScriptEngine();
+		ScriptEngineManager manager = new ScriptEngineManager();
+		engine = manager.getEngineByName("js");
 		engine.put("ei", this);
 		externalInterface.addScriptEvaluator(this);
 	}

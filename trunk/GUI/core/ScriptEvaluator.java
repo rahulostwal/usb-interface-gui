@@ -26,7 +26,7 @@ public class ScriptEvaluator implements ActionListener {
 			JTextArea textArea) {
 		this.externalInterface = externalInterface;
 		this.textArea = textArea;
-		timer = new Timer(100, this);
+		timer = new Timer(delay, this);
 		timer.start();
 		ScriptEngineManager manager = new ScriptEngineManager();
 		engine = manager.getEngineByName("js");

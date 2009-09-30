@@ -36,6 +36,7 @@ public class CommandTransmitter implements ChangeListener, ItemListener{
 	public void setInterfaceValue(int value) {
 		this.value = value;
 		externalInterface.sendCommand(command, value);
+		valueGetter.setValue(value);
 	}
 
 	@Override

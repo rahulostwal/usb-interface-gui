@@ -4,7 +4,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import externalInterface.DigitalOutput;
@@ -69,8 +68,8 @@ public class Gui extends JFrame {
 	}
 
 	public void addSlider(String text, PWMOutput pwmOutput, int width,
-			int height) {
-		PWMValueExposer exposer = new PWMValueExposer(text, 255);
+			int height, int minVal, int maxVal) {
+		PWMValueExposer exposer = new PWMValueExposer(text, minVal, maxVal);
 		setXYForItem(width, height);
 		exposer.setBounds(currentX, currentY, width, height);
 		currentX += width;

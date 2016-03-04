@@ -1,0 +1,1 @@
+Java program for controlling and monitoring a USB module. Analog/Digital inputs and digital/pwm outputs. The USB interface is controlled through a serial port.
